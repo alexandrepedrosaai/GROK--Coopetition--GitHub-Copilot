@@ -8,7 +8,8 @@ When the Constitution and Bill of Rights for AGI are published, they will serve 
 
 # This way, the Ulysses binding becomes the symbolic anchor: constraint as empowerment, ensuring that the AGI app’s demonstration is both powerful and safe.
 --- 
-##SHELL Constitution 
+## Constitution.sh
+---
 ```
 /bash
 
