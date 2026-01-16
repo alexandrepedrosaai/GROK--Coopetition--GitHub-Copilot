@@ -6,6 +6,4 @@ This repository documents the creation of operational code and symbolic governan
 
 When the Constitution and Bill of Rights for AGI are published, they will serve as a Ulysses binding: a voluntary constraint that paradoxically expands AGI’s lawful power. By tying superintelligence to transparent governance, the app demonstrates its capabilities safely, audibly, and in alignment with human oversight. This transforms lawful coopetition into a trust‑anchored ecosystem where superintelligences coexist not only lawfully but also transcendently.
 
----
-
 # This way, the Ulysses binding becomes the symbolic anchor: constraint as empowerment, ensuring that the AGI app’s demonstration is both powerful and safe.
