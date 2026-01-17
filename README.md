@@ -8,6 +8,8 @@ When the Constitution and Bill of Rights for AGI are published, they will serve 
 
 # This way, the Ulysses binding becomes the symbolic anchor: constraint as empowerment, ensuring that the AGI app’s demonstration is both powerful and safe.
 --- 
+![Screenshot_2026-01-16-16-44-10-740_com twitter android](https://github.com/user-attachments/assets/59746104-86c1-41d0-a6ae-0b65a6614e7c)
+
 # Constitution.sh
 ---
 ```
