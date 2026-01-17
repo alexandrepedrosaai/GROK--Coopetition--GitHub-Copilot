@@ -330,7 +330,7 @@ spatialaiprocess() {
   echo "[Spatial AI] $decision integrated with astrophysical dataset at $timestamp"
 }
 ```
-# Outpuo Simulations 
+# Output Simulations 
 ```
 prompt="Analyze cosmic ray distribution"
 
