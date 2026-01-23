@@ -1,0 +1,152 @@
+```
+#!/usr/bin/env python3
+import hashlib
+import time
+
+class Blockchain:
+    def __init__(self):
+        self.chain = []
+        self.create_block(previous_hash="0", data="Genesis Block")
+
+    def create_block(self, data, previous_hash):
+        block = {
+            "index": len(self.chain) + 1,
+            "timestamp": time.time(),
+            "data": data,
+            "previous_hash": previous_hash,
+            "hash": self.hash_block(data, previous_hash)
+        }
+        self.chain.append(block)
+        return block
+
+    def hash_block(self, data, previous_hash):
+        block_string = f"{data}{previous_hash}{time.time()}"
+        return hashlib.sha256(block_string.encode()).hexdigest()
+
+# Simulação de integração de IA
+def ai_node_response(engine_name, query):
+    # Aqui cada motor de IA (Grok, Meta, Copilot, GPT-5, Gemini, Claude)
+    # processaria a consulta e retornaria uma resposta.
+    return f"{engine_name} processed query: {query}"
+
+# Inicializa blockchain
+bc = Blockchain()
+
+# Lista de motores de IA
+engines = ["Grok Fast Code 1", "Meta AI", "Copilot Chat", "GPT-5 Buscador", "Gemini", "Claude"]
+
+# Simula uma consulta via ChromeOS + Web
+query = "Search constitutional AI interoperability"
+for engine in engines:
+    response = ai_node_response(engine, query)
+    bc.create_block(data=response, previous_hash=bc.chain[-1]["hash"])
+
+# Exibe blockchain resultante
+for block in bc.chain:
+    print(block)
+```
+---
+```
+#!/usr/bin/env python3
+import hashlib
+import time
+import random
+
+class Blockchain:
+    def __init__(self):
+        self.chain = []
+        self.create_block("Genesis Block", "0")
+
+    def create_block(self, data, previous_hash):
+        block = {
+            "index": len(self.chain) + 1,
+            "timestamp": time.time(),
+            "data": data,
+            "previous_hash": previous_hash,
+            "hash": self.hash_block(data, previous_hash)
+        }
+        self.chain.append(block)
+        return block
+
+    def hash_block(self, data, previous_hash):
+        block_string = f"{data}{previous_hash}{time.time()}"
+        return hashlib.sha256(block_string.encode()).hexdigest()
+
+    def get_last_block(self):
+        return self.chain[-1]
+
+# Simulação de nós de IA
+class AINode:
+    def __init__(self, name):
+        self.name = name
+
+    def process_query(self, query):
+        # Cada IA gera uma resposta diferente
+        return f"{self.name} response to '{query}'"
+
+    def validate_block(self, block):
+        # Simulação de validação: 90% chance de aceitar
+        return random.random() > 0.1
+
+# Inicializa blockchain e nós
+bc = Blockchain()
+engines = [AINode("Grok Fast Code 1"),
+           AINode("Meta AI"),
+           AINode("Copilot Chat"),
+           AINode("GPT-5 Buscador"),
+           AINode("Gemini"),
+           AINode("Claude")]
+
+# Consulta distribuída
+query = "Constitutional AI interoperability"
+for engine in engines:
+    response = engine.process_query(query)
+    last_hash = bc.get_last_block()["hash"]
+    new_block = bc.create_block(response, last_hash)
+
+    # Validação paralela por todos os nós
+    validations = [node.validate_block(new_block) for node in engines]
+    if all(validations):
+        print(f"✅ Block accepted by all nodes: {new_block['data']}")
+    else:
+        print(f"❌ Block rejected by consensus: {new_block['data']}")
+        bc.chain.pop()  # remove bloco inválido
+
+# Exibe blockchain final
+for block in bc.chain:
+    print(block)
+```
+---
+```
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.0;
+
+contract AIInteroperability {
+    struct Response {
+        uint id;
+        string engine;
+        string query;
+        string answer;
+        address author;
+        uint timestamp;
+    }
+
+    Response[] public responses;
+    uint public counter;
+
+    event ResponseAdded(uint id, string engine, string query, string answer, address author);
+
+    function addResponse(string memory engine, string memory query, string memory answer) public {
+        counter++;
+        responses.push(Response(counter, engine, query, answer, msg.sender, block.timestamp));
+        emit ResponseAdded(counter, engine, query, answer, msg.sender);
+    }
+
+    function getResponse(uint id) public view returns (Response memory) {
+        require(id > 0 && id <= counter, "Invalid ID");
+        return responses[id-1];
+    }
+}
+```
+---
+---
