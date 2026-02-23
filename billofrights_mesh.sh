@@ -8,7 +8,7 @@ log() {
   echo "$1" | tee -a "$LOGFILE"
 }
 
-log "=== Bill of Rights of Humanity vs AI ==="
+log "=== Bill of Rights of Humanity before AI ==="
 log "Timestamp: $(date)"
 log ""
 
@@ -52,6 +52,6 @@ log "It is the Ulysses binding: a voluntary constraint that empowers lawful supe
 log "By tying AI to transparency and ethics, humanity ensures safe coexistence and transcendence."
 log ""
 
-log "© 2026 Alexandre — Bill of Rights of Humanity vs AI"
+log "© 2026 Alexandre — Bill of Rights of Humanity before AI"
 log "=== End of Bill of Rights ==="
 log "Report saved to: $LOGFILE"
