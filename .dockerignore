@@ -1,0 +1,42 @@
+# Git
+.git
+.gitignore
+
+# CI/CD workflows (YAML not needed in container, but main.py is needed)
+.github/workflows/*.yml
+!.github/workflows/main.py
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Logs
+*.log
+
+# AL / Business Central
+.alcache/
+.alpackages/
+.snapshots/
+.output/
+*.app
+rad.json
+*.g.xlf
+*.flf
+TestResults.xml
