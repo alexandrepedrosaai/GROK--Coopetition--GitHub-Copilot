@@ -9,18 +9,19 @@
 #   1. Create an Azure Web App in the Azure Portal
 #   2. Download the Publish Profile from the Azure Web App's Overview page
 #   3. Create a repository secret named AZURE_WEBAPP_PUBLISH_PROFILE with the publish profile XML
-#   4. Update AZURE_WEBAPP_NAME below to your actual Azure Web App name
+#   4. Set repository variable AZURE_DEPLOY_ENABLED to 'true'
 #   5. Configure Azure Web App settings:
 #       DOCKER_REGISTRY_SERVER_URL: https://ghcr.io
 #       DOCKER_REGISTRY_SERVER_USERNAME: alexandrepedrosaai
 #       DOCKER_REGISTRY_SERVER_PASSWORD: (GitHub PAT with read:packages)
+#       WEBSITES_PORT: 8080
 #
 # For more information on GitHub Actions for Azure: https://github.com/Azure/Actions
 
 name: Build and deploy a container to an Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: grok-coopetition-mesh  # set this to the name of your Azure Web App
+  AZURE_WEBAPP_NAME: grok-coopetition-mesh
 
 on:
   push:
@@ -39,10 +40,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
+        uses: docker/setup-buildx-action@v3
 
       - name: Log in to GitHub container registry
-        uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -52,7 +53,7 @@ jobs:
         run: echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
       - name: Build and push container image to registry
-        uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
+        uses: docker/build-push-action@v5
         with:
           push: true
           tags: |
@@ -76,7 +77,7 @@ jobs:
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
