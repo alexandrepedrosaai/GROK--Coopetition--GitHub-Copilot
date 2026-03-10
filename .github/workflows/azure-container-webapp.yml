@@ -1,33 +1,26 @@
-# This workflow will build and push a Docker container to an Azure Web App when a commit is pushed to your default branch.
+# This workflow builds and pushes a Docker container to GitHub Container Registry (GHCR).
+# When Azure credentials are configured, it also deploys to an Azure Web App.
 #
-# This workflow assumes you have already created the target Azure App Service web app.
-# For instructions see https://docs.microsoft.com/en-us/azure/app-service/quickstart-custom-container?tabs=dotnet&pivots=container-linux
+# Setup for GHCR (works immediately):
+#   - Docker image is built from Dockerfile and pushed to ghcr.io
+#   - No additional configuration needed
 #
-# To configure this workflow:
-#
-# 1. Download the Publish Profile for your Azure Web App. You can download this file from the Overview page of your Web App in the Azure Portal.
-#    For more information: https://docs.microsoft.com/en-us/azure/app-service/deploy-github-actions?tabs=applevel#generate-deployment-credentials
-#
-# 2. Create a secret in your repository named AZURE_WEBAPP_PUBLISH_PROFILE, paste the publish profile contents as the value of the secret.
-#    For instructions on obtaining the publish profile see: https://docs.microsoft.com/azure/app-service/deploy-github-actions#configure-the-github-secret
-#
-# 3. Create a GitHub Personal access token with "repo" and "read:packages" permissions.
-#
-# 4. Create three app settings on your Azure Web app:
-#       DOCKER_REGISTRY_SERVER_URL: Set this to "https://ghcr.io"
-#       DOCKER_REGISTRY_SERVER_USERNAME: Set this to the GitHub username or organization that owns the repository
-#       DOCKER_REGISTRY_SERVER_PASSWORD: Set this to the value of your PAT token from the previous step
-#
-# 5. Change the value for the AZURE_WEBAPP_NAME.
+# Setup for Azure deployment (optional):
+#   1. Create an Azure Web App in the Azure Portal
+#   2. Download the Publish Profile from the Azure Web App's Overview page
+#   3. Create a repository secret named AZURE_WEBAPP_PUBLISH_PROFILE with the publish profile XML
+#   4. Update AZURE_WEBAPP_NAME below to your actual Azure Web App name
+#   5. Configure Azure Web App settings:
+#       DOCKER_REGISTRY_SERVER_URL: https://ghcr.io
+#       DOCKER_REGISTRY_SERVER_USERNAME: alexandrepedrosaai
+#       DOCKER_REGISTRY_SERVER_PASSWORD: (GitHub PAT with read:packages)
 #
 # For more information on GitHub Actions for Azure: https://github.com/Azure/Actions
-# For more information on the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# For more samples to get started with GitHub Action workflows to deploy to Azure: https://github.com/Azure/actions-workflow-samples
 
 name: Build and deploy a container to an Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: your-app-name  # set this to the name of your Azure Web App
+  AZURE_WEBAPP_NAME: grok-coopetition-mesh  # set this to the name of your Azure Web App
 
 on:
   push:
@@ -62,7 +55,9 @@ jobs:
         uses: docker/build-push-action@0565240e2d4ab88bba5387d719585280857ece09 # v5.0.0
         with:
           push: true
-          tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
+          tags: |
+            ghcr.io/${{ env.REPO }}:${{ github.sha }}
+            ghcr.io/${{ env.REPO }}:latest
           file: ./Dockerfile
 
   deploy:
@@ -70,6 +65,7 @@ jobs:
       contents: none
     runs-on: ubuntu-latest
     needs: build
+    if: ${{ vars.AZURE_DEPLOY_ENABLED == 'true' }}
     environment:
       name: 'Development'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
