@@ -13,7 +13,7 @@
 name: Build and deploy a container to an Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: grok-coopetition-mesh
+  AZURE_WEBAPP_NAME: metagrok-mesh
 
 on:
   push:

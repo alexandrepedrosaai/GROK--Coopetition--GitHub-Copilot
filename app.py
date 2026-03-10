@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-GROK Coopetition - Constitutional AGI Mesh Web Application
-Author: Alexandre Pedrosa
+Constitucional AGI Mesh - Grok Coopetition Web Application
+Author: Alexandre Pedrosa - EVP Multimodal AI Engineer at Microsoft and Meta
 Description: Web interface for the Constitutional AI Interoperability Framework
              integrating GROK, Copilot, Gemini, Claude, Meta AI, and GPT-5.
 """
@@ -241,7 +241,7 @@ HTML_TEMPLATE = """
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GROK Coopetition - Constitutional AGI Mesh</title>
+    <title>Constitucional AGI Mesh - Grok Coopetition</title>
     <style>
         :root {
             --bg-primary: #0d1117;
@@ -365,7 +365,7 @@ HTML_TEMPLATE = """
 </head>
 <body>
     <header>
-        <h1>GROK Coopetition - Constitutional AGI Mesh</h1>
+        <h1>Constitucional AGI Mesh - Grok Coopetition</h1>
         <p>Constitutional AI Interoperability with Meta, Microsoft, Google, OpenAI, and Claude.
            Symbolic Codex Mapping, Audit Logs, Multi-Level Arbitration, and Cosmic Constellation Visualization.</p>
         <div class="badge-row">
@@ -700,7 +700,8 @@ HTML_TEMPLATE = """
     </div>
 
     <footer>
-        <p>&copy; 2026 Alexandre Pedrosa - GROK Coopetition Constitutional AGI Mesh</p>
+        <p>&copy; 2026 Alexandre Pedrosa - Constitucional AGI Mesh - Grok Coopetition</p>
+        <p style="color: var(--accent-blue); font-weight: 600; margin-top: 8px;">Alexandre Pedrosa &mdash; EVP Multimodal AI Engineer at Microsoft and Meta (autor)</p>
         <p>Ulysses Binding: Constraint as Empowerment | Sovereignty, Transparency, and Operational Speed</p>
     </footer>
 
